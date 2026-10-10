@@ -1,1 +1,495 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#075b3b">
+  <meta name="description" content="Explore PENSA UDS-NYC event photos and memories.">
+  <title>PENSA UDS-NYC | Photo Gate</title>
+
+  <style>
+    :root {
+      --green: #075b3b;
+      --deep: #043c29;
+      --gold: #e9bd59;
+      --paper: #f5f7f4;
+      --ink: #18231d;
+      --muted: #657168;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      padding: 22px 6%;
+      background: var(--deep);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .brand {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .brand span { color: var(--gold); }
+
+    .hero {
+      background: linear-gradient(135deg, var(--deep), var(--green));
+      color: white;
+      padding: 64px 6% 70px;
+    }
+
+    .hero-inner, main, footer {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      max-width: 700px;
+      font-size: clamp(34px, 6vw, 60px);
+      line-height: 1.05;
+      margin: 18px 0;
+    }
+
+    .hero p {
+      max-width: 580px;
+      color: #e3eee7;
+      line-height: 1.7;
+    }
+
+    main { padding: 38px 6% 60px; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    h2 { margin: 0 0 8px; font-size: 27px; }
+
+    .muted { color: var(--muted); font-size: 14px; }
+
+    .events {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 22px;
+    }
+
+    .event {
+      background: white;
+      border: 1px solid #e0e7e1;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px #143d2010;
+    }
+
+    .cover {
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+      background: #e3eae4;
+      display: block;
+    }
+
+    .event-body { padding: 20px; }
+
+    .event-date {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .event h3 { font-size: 22px; margin: 10px 0; }
+
+    .description {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+      min-height: 42px;
+      overflow-wrap: anywhere;
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 18px 0;
+    }
+
+    a.social {
+      display: inline-block;
+      text-decoration: none;
+      border: 1px solid #d5dfd7;
+      color: var(--green);
+      border-radius: 8px;
+      padding: 9px 11px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    a.social:hover { background: #edf5ef; }
+
+    .gallery-button {
+      display: block;
+      width: 100%;
+      border: 0;
+      border-radius: 9px;
+      background: var(--green);
+      color: white;
+      padding: 14px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .gallery-button:disabled {
+      background: #a8b6ac;
+      cursor: not-allowed;
+    }
+
+    .note {
+      margin-top: 11px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .status {
+      padding: 22px;
+      border-radius: 12px;
+      background: white;
+      border: 1px solid #e0e7e1;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    footer {
+      padding: 25px 6%;
+      border-top: 1px solid #dce4dd;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--green); }
+
+    @media (max-width: 500px) {
+      .hero { padding-top: 46px; }
+      .cover { height: 180px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">PENSA <span>UDS-NYC</span> | MEDIA</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Moments worth remembering</div>
+      <h1>Every moment tells a story.</h1>
+      <p>
+        Relive our services, fellowships and special events.
+        Explore the memories captured by the PENSA UDS-NYC Media Team.
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <div class="section-heading">
+      <div>
+        <h2>Event galleries</h2>
+        <div class="muted">Find your event and explore the memories.</div>
+      </div>
+      <div id="event-count" class="muted">Loading events…</div>
+    </div>
+
+    <div id="events" class="events">
+      <div class="status">Loading published events…</div>
+    </div>
+  </main>
+
+  <footer>
+    <strong>PENSA UDS-NYC Media Team</strong><br>
+    Activity statistics record website visits and link clicks.
+    Clicking a social link does not verify a follow.
+    Gallery hosting and photo access are provided by Pixieset.
+    <br>
+    <a href="privacy.html">Privacy information</a>
+  </footer>
+
+  <script>
+    // REQUIRED: Replace this with your deployed Apps Script /exec URL.
+    const API_URL = "https://script.google.com/macros/s/AKfycbwYozNB1Q6JkVg5ShL7zwanCLmgUOcCCyeRF5Jjhie6di5QeOjJbkGbFJvpKqDAadea/exec
+";
+
+    // REQUIRED: Replace these examples with your real social profile URLs.
+    const SOCIAL_LINKS = {
+      instagram: "https://www.instagram.com/accounts/settings/v2/hidden_feedback/",
+      facebook: "https://www.facebook.com/profile.php?id=61586153946497",
+      tiktok: "https://www.tiktok.com/@pensa_uds_nyc?is_from_webapp=1&sender_device=pc"
+    };
+
+    function getId(storage, key) {
+      let value = storage.getItem(key);
+
+      if (!value) {
+        value = (crypto.randomUUID)
+          ? crypto.randomUUID()
+          : Date.now().toString(36) + Math.random().toString(36).slice(2);
+
+        storage.setItem(key, value);
+      }
+
+      return value;
+    }
+
+    const visitorId = getId(localStorage, "pensa_pg_visitor");
+    const sessionId = getId(sessionStorage, "pensa_pg_session");
+    const pageParams = new URLSearchParams(location.search);
+    const trafficSource = pageParams.get("source") || "direct_or_unknown";
+
+    // Apps Script JSONP allows requests from GitHub Pages without
+    // relying on browser CORS permissions.
+    let callbackNumber = 0;
+
+    function apiRequest(params) {
+      return new Promise((resolve, reject) => {
+        if (!API_URL.startsWith("https://script.google.com/")) {
+          reject(new Error("Set your deployed Apps Script URL first."));
+          return;
+        }
+
+        const callbackName = "__pensaCallback" + (++callbackNumber);
+        const script = document.createElement("script");
+        const query = new URLSearchParams({
+          ...params,
+          callback: callbackName
+        });
+
+        let finished = false;
+
+        function cleanup() {
+          finished = true;
+          delete window[callbackName];
+          script.remove();
+        }
+
+        const timeout = setTimeout(() => {
+          if (finished) return;
+          cleanup();
+          reject(new Error("API request timed out."));
+        }, 12000);
+
+        window[callbackName] = data => {
+          if (finished) return;
+          clearTimeout(timeout);
+          cleanup();
+          resolve(data);
+        };
+
+        script.onerror = () => {
+          if (finished) return;
+          clearTimeout(timeout);
+          cleanup();
+          reject(new Error("Could not reach the API."));
+        };
+
+        script.src = API_URL + "?" + query.toString();
+        document.body.appendChild(script);
+      });
+    }
+
+    function track(type, eventSlug, platform = "") {
+      apiRequest({
+        action: "track",
+        type,
+        event: eventSlug,
+        platform,
+        visitor: visitorId,
+        session: sessionId,
+        source: trafficSource,
+        referrer: document.referrer
+      }).catch(error => {
+        console.warn("Tracking request failed:", error.message);
+      });
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function safeURL(value, fallback = "") {
+      try {
+        const url = new URL(String(value || ""), location.href);
+        return ["https:", "http:"].includes(url.protocol)
+          ? url.href
+          : fallback;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function formatDate(value) {
+      if (!value) return "Event memories";
+
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return escapeHTML(value);
+
+      return date.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone: "UTC"
+      });
+    }
+
+    function renderEvent(event) {
+      const slug = String(event.slug || "");
+      const title = String(event.title || "PENSA Event");
+      const cover = safeURL(event.cover_image);
+      const gallery = safeURL(event.gallery_url);
+      const unlocked = sessionStorage.getItem("pensa_pg_unlock_" + slug) === "yes";
+      const canOpenGallery = unlocked && Boolean(gallery);
+
+      const socialButtons = Object.entries(SOCIAL_LINKS).map(([platform, url]) => {
+        const safe = safeURL(url);
+        if (!safe) return "";
+
+        return `
+          <a class="social"
+             href="${escapeHTML(safe)}"
+             target="_blank"
+             rel="noopener noreferrer"
+             data-platform="${escapeHTML(platform)}"
+             data-event="${escapeHTML(slug)}">
+             ${escapeHTML(platform[0].toUpperCase() + platform.slice(1))}
+          </a>`;
+      }).join("");
+
+      return `
+        <article class="event">
+          ${cover
+            ? `<img class="cover" src="${escapeHTML(cover)}"
+                    alt="${escapeHTML(title)}" loading="lazy">`
+            : `<div class="cover" aria-hidden="true"></div>`}
+          <div class="event-body">
+            <div class="event-date">${escapeHTML(formatDate(event.event_date))}</div>
+            <h3>${escapeHTML(title)}</h3>
+            <div class="description">${escapeHTML(event.description || "Explore photos from this event.")}</div>
+            <div class="socials">${socialButtons}</div>
+            <button class="gallery-button"
+              data-gallery="${escapeHTML(gallery)}"
+              data-event="${escapeHTML(slug)}"
+              ${canOpenGallery ? "" : "disabled"}>
+              ${canOpenGallery ? "Open photo gallery ↗" : "Visit a social page to unlock"}
+            </button>
+            <div class="note">
+              Open one of our social pages to enable the gallery button.
+              This records a click only; it cannot verify a follow.
+            </div>
+          </div>
+        </article>`;
+    }
+
+    async function loadEvents() {
+      const container = document.getElementById("events");
+
+      if (API_URL.includes("PASTE_YOUR_APPS_SCRIPT")) {
+        container.innerHTML =
+          '<div class="status">Setup needed: add your Apps Script web app URL in index.html.</div>';
+        document.getElementById("event-count").textContent = "Not connected";
+        return;
+      }
+
+      // Record one homepage visit.
+      track("visit", "home");
+
+      try {
+        const result = await apiRequest({ action: "events" });
+
+        if (!result.success) throw new Error(result.error || "API error");
+
+        const events = result.events || [];
+        document.getElementById("event-count").textContent =
+          events.length + (events.length === 1 ? " event" : " events");
+
+        if (!events.length) {
+          container.innerHTML =
+            '<div class="status">No published events yet. Add an event to the Events tab and set its status to Active.</div>';
+          return;
+        }
+
+        container.innerHTML = events.map(renderEvent).join("");
+      } catch (error) {
+        console.error(error);
+        container.innerHTML =
+          '<div class="status">We could not load the galleries. Please try again later or contact the PENSA media team.</div>';
+        document.getElementById("event-count").textContent = "Connection issue";
+      }
+    }
+
+    document.addEventListener("click", event => {
+      const social = event.target.closest("a[data-platform]");
+      const galleryButton = event.target.closest("button[data-gallery]");
+
+      if (social) {
+        const slug = social.dataset.event;
+        const platform = social.dataset.platform;
+
+        track("social_click", slug, platform);
+
+        sessionStorage.setItem("pensa_pg_unlock_" + slug, "yes");
+
+        const card = social.closest(".event");
+        const button = card.querySelector(".gallery-button");
+
+        button.disabled = !button.dataset.gallery;
+        button.textContent = button.disabled
+          ? "Gallery link unavailable"
+          : "Open photo gallery ↗";
+      }
+
+      if (galleryButton && !galleryButton.disabled) {
+        const gallery = safeURL(galleryButton.dataset.gallery);
+        const slug = galleryButton.dataset.event;
+
+        if (gallery) {
+          track("gallery_access", slug);
+          window.open(gallery, "_blank", "noopener,noreferrer");
+        }
+      }
+    });
+
+    loadEvents();
+  </script>
+</body>
+</html>
